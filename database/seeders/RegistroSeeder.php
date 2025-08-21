@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Registro;
 use App\Models\Sensor;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -32,17 +33,34 @@ class RegistroSeeder extends Seeder
             foreach($sensores as $sensor){
                 $tipo = $sensor->tipo;
 
-                $unidade = $unidadePorTipo['tipo'] ?? '';
+                $unidade = $unidadesPorTipo[$tipo] ?? '';
 
                 switch($tipo){
                     case 'temperatura':
                         $valor = $faker->randomFloat(2, 15, 35);
-                        break;
+                            break;
                         case 'umidade':
                             $valor = $faker->randomFloat(2, 20, 90);
                             break;
+                        case 'luminosidade': 
+                            $valor = $faker->numberBetween(0, 1000);
+                            break;
+                        case 'presenca':
+                            $valor = $faker->randomElement(['ON', 'OFF']);
+                            break;
+                        default:
+                            $valor = $faker->randomFloat(2, 0, 100);
+                            break;
                 }
+
+                Registro::create([
+                    'sensor_id' => $sensor->id,
+                    'valor' => $valor,
+                    'unidade' => $unidade,
+                    'data_hora' => $dataAtual->format('Y-m-d H:i:s')
+                ]);
             }
+            $dataAtual->addMinutes(10);
         }
     }
 }
