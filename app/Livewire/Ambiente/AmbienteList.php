@@ -31,13 +31,11 @@ class AmbienteList extends Component
         return view('livewire.ambiente.ambiente-list', compact('ambientes'));
     }
 
-    public function delete($id)
+     public function delete($id)
     {
-        if(auth()->check() && auth()->ambientes()->id){
-        $ambientes = Ambiente::findOrFail($id);
-        User::findOrFail($ambientes->id)->delete();
-        session()->flash('success', 'Ambiente deletado com sucesso.');
+        $ambiente = Ambiente::findOrFail($id);
+        Ambiente::findOrFail($ambiente->id)->delete();
+        session()->flash('error', 'Ambiente deletado com sucesso.');
     }
-}
-    
+
 }

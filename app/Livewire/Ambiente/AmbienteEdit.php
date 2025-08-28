@@ -13,12 +13,26 @@ class AmbienteEdit extends Component
     public $descricao;
     public $status;
 
+     protected $rules = [
+        'nome'=> 'max:255',
+        'descricao' => 'max:255',
+        
+    ];
+
+    protected $messages = [
+        'nome.max' => 'o campo tem um maximo de 255 caracteres',
+        'descricao.max' => 'o campo descricao tem um maximo de 255 caracteres',
+    ];
+
+
     public function mount($id)
     {
         $ambiente = Ambiente::find($id);
         
         if($ambiente == null){
             session()->flash('error', 'Id do Ambiente nao encontrado');
+            return $this->redirect(route('Ambiente.index'));
+
         }  else{
             $this->AmbienteId = $ambiente->id;
         $this->nome = $ambiente->nome;
@@ -41,7 +55,7 @@ class AmbienteEdit extends Component
         $ambiente->save();
 
         return $this->redirect(route('Ambiente.index'));
-        session()->flash('success', 'ambiente atualizado com sucesso!');
+        session()->flash('message', 'ambiente atualizado com sucesso!');
     }
 
     public function render()

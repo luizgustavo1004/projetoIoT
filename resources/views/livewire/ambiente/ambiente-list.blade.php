@@ -1,12 +1,12 @@
 <div class="container mt-4">
     <div class="row mb-3">
         <div class="col-md-6">
-            <h2>Ambiente</h2>
+            <h2>Ambiente <i class="bi bi-tree-fill"></i></h2>
         </div>
 
         <div class="col-md-6 text-end">
             <a href="{{ route('Ambiente.create') }}" class="btn btn-success">
-                <i class="bi bi-plus-circle"></i> Novo Ambiente
+                <i class="bi bi-plus-circle"></i> Novo Ambiente 
             </a>
         </div>
     </div>
@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-md-3">
                     <select wire:model.live="perPage" class="form-select">
-                        <option value="10">10 por página</option>
+                        <option value="15">15 por página</option>
                         <option value="25">25 por página</option>
                         <option value="50">50 por página</option>
                         <option value="100">100 por página</option>
@@ -29,11 +29,27 @@
                 </div>
             </div>
 
+             @if (session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             @if (session()->has('message'))
                 <div class="alert alert-success">
                     {{ session('message') }}
                 </div>
             @endif
+
+             @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
 
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -61,7 +77,7 @@
                                     </a>
 
                                     <button wire:click="delete({{ $ambiente->id }})" class="btn btn-sm btn-danger"
-                                        wire:confirm="Tem certeza? que deseja deletar este administrador?">
+                                        wire:confirm="Tem certeza? que deseja deletar este ambiente?">
                                         <i style="color: black" class="bi bi-trash"></i>
                                     </button>
                                 </td>
