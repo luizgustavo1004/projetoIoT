@@ -22,13 +22,12 @@
                             <option value={{ $ambiente->id }}> {{ $ambiente->nome }} </option>
                         @endforeach
                     </select>
+                     @error  ('ambiente')<span class="text-danger small">{{ $message }}</span>   @enderror
                 </div>
 
                 <label class="form-label">Codigo</label>
                 <input type="text" wire:model="codigo" class="form-control" required placeholder="Ex.: 1029">
-                @error('codigo')
-                    <span class="text-danger small">{{ $message }}</span>
-                @enderror
+                @error  ('codigo')<span class="text-danger small">{{ $message }}</span>   @enderror
             </div>
 
             <div class="mb-3">
@@ -58,6 +57,12 @@
             <button type="submit" class="btn btn-success w-100">
                 <i class="bi bi-save2 me-2"></i>Criar ambiente
             </button>
+
+            <div class="mt-4 d-flex justify-content-between">
+                <a href="{{ route('Sensor.List') }}" class="btn btn-success text-white  px-4 w-100">
+                    <i style="color: white" class="bi bi-arrow-left-circle"></i> Voltar
+                </a>
+            </div>
 
         </form>
     </div>
