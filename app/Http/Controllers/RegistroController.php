@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegistroRequest;
 use App\Models\Registro;
 use App\Models\Sensor;
 use Illuminate\Http\Request;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 class RegistroController
 {
 
-    public function store(Request $request){
+    public function store(RegistroRequest $request){    
 
         $sensor = Sensor::where('codigo', '=', $request->codigo)->first();
         if($sensor == null){
@@ -18,7 +19,6 @@ class RegistroController
                 'message' => 'codigo nao encontrado'
             ]);
         } 
-        
         
         $registro = Registro::create([
             'sensor_id' => $sensor->id,
