@@ -29,8 +29,8 @@
                 <label for="status" class="form-label"><i class="text-success bi bi-hand-thumbs-up-fill"></i>Status<i class="text-danger bi bi-hand-thumbs-down-fill"></i></label>
                 <select class="form-select" id="status" wire:model.defer="status">
                     <option hidden>Selecione o status</option>
-                    <option  value=1 >True</option>
-                    <option value=0>False</option>
+                    <option  value=1 >Ativo</option>
+                    <option value=0>Inativo</option>
                 </select>
             </div> 
 

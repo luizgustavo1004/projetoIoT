@@ -10,7 +10,7 @@ use App\Livewire\Sensores\SensoresEdit;
 use App\Livewire\Sensores\SensoresList;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', Dashboard::class);
+Route::get('/', Dashboard::class)->name('Dashboard');
 
 Route::get('/Registro', RegistroList::class)->name('Registro.list');
 
