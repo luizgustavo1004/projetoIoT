@@ -21,6 +21,8 @@ class SensoresList extends Component
         'perPage' => ['except' => 15],
     ];
 
+    
+
 
     public function render()
     {
@@ -38,5 +40,8 @@ class SensoresList extends Component
         Sensor::findOrFail($sensor->id)->delete();
         session()->flash('message', 'Sensor deletado com sucesso.');
     }
+
+
+
 
 }

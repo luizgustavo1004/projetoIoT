@@ -16,8 +16,8 @@
         <div class="card-body">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <input type="text" wire:model.debounce.300ms="search" class="form-control" wire:model.live="search"
-                        placeholder="Buscar ambiente...">
+                    <input type="text" wire:model.debounce.300ms="search" class="form-control"
+                        wire:model.live="search" placeholder="Buscar ambiente...">
                 </div>
                 <div class="col-md-3">
                     <select wire:model.live="perPage" class="form-select">
@@ -41,15 +41,15 @@
                 </div>
             @endif
 
-                @if ($errors->any())
+            @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
+                            <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
-                @endif
+            @endif
 
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -60,21 +60,35 @@
                             <th>Tipo</th>
                             <th>Descrição</th>
                             <th>Status</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($sensores as $sensor)
                             <tr>
-                                <td>{{ $sensor->ambiente_id}}</td>
+                                <td>{{ $sensor->ambiente_id }}</td>
                                 <td>{{ $sensor->codigo }}</td>
                                 <td>{{ $sensor->tipo }}</td>
                                 <td>{{ $sensor->descricao }}</td>
-                                <td>{{ $sensor->status }}</td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" wire:click="toggleStatus" type="checkbox"
+                                            role="switch" id="switchCheckDefault"
+                                            {{ $sensor->status == 1 ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="switchCheckDefault"></label>
+                                    </div>
+
+
+                                    {{-- <button wire:click="toggleStatus"
+                                            class="btn {{ $sensor->concluido ? 'btn-success' : 'btn-danger' }}">
+                                            {{ $sensor->concluido ? 'Ativo' : 'Inativo' }}
+                                        </button> --}}
+                                </td>
+
                                 <td>
 
 
-                                    <a href="{{ route('Sensor.Edit', $sensor->id) }}"
-                                        class="btn btn-sm btn-primary">
+                                    <a href="{{ route('Sensor.Edit', $sensor->id) }}" class="btn btn-sm btn-primary">
                                         <i style="color: black" class="bi bi-pencil"></i>
                                     </a>
 
@@ -83,7 +97,9 @@
                                         <i style="color: black" class="bi bi-trash"></i>
                                     </button>
 
-                                    
+
+
+
                                 </td>
                             </tr>
                         @empty
@@ -97,7 +113,7 @@
 
             <div class="mt-3">
                 {{ $sensores->links() }}
-             </div>
+            </div>
 
         </div>
     </div>
