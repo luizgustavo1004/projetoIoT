@@ -41,7 +41,17 @@ class SensoresList extends Component
         session()->flash('message', 'Sensor deletado com sucesso.');
     }
 
+   
+
+    public function toggleStatus(Sensor $sensor)
+    {
+        $sensor->status = !$sensor->status; 
+        $sensor->save();
+
+    }
+
+    }
 
 
 
-}
+   

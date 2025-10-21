@@ -60,6 +60,7 @@
                             <th>Tipo</th>
                             <th>Descrição</th>
                             <th>Status</th>
+                            <th>Liga/Desliga</th>
 
                         </tr>
                     </thead>
@@ -71,22 +72,19 @@
                                 <td>{{ $sensor->tipo }}</td>
                                 <td>{{ $sensor->descricao }}</td>
                                 <td>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" wire:click="toggleStatus" type="checkbox"
-                                            role="switch" id="switchCheckDefault"
-                                            {{ $sensor->status == 1 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="switchCheckDefault"></label>
-                                    </div>
-
-
-                                    {{-- <button wire:click="toggleStatus"
-                                            class="btn {{ $sensor->concluido ? 'btn-success' : 'btn-danger' }}">
-                                            {{ $sensor->concluido ? 'Ativo' : 'Inativo' }}
-                                        </button> --}}
+                                    <span class="badge {{$sensor->status == 1 ? 'bg-success' : 'bg-secondary'}}">{{$sensor -> status == 1 ? 'Ativo' : 'Inativo'}}</span>
                                 </td>
+                                <td class="align-middle">
+                                    <button wire:click="toggleStatus({{$sensor->id}})" class="btn btn-sm {{ $sensor->status == 1 ? 'btn-danger' : 'btn-success'}}">
+                                        {{$sensor->status == 1 ? 'Desativar' : 'Ativar'}}
+                                    </button>
+                                </td>
+
+                              
 
                                 <td>
 
+                                
 
                                     <a href="{{ route('Sensor.Edit', $sensor->id) }}" class="btn btn-sm btn-primary">
                                         <i style="color: black" class="bi bi-pencil"></i>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class SensoresController
 {
+
      public function find(Request $request){
 
         $sensor = Sensor::where('codigo', '=', $request->codigo)->first();
@@ -23,22 +24,22 @@ class SensoresController
         ]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
-    $sensor = Sensor::where('codigo', '=', $request->codigo)->first();
-     if($sensor == null){
+        $sensor = Sensor::where('codigo', '=', $request->codigo)->first();
+        if ($sensor == null) {
             return response()->json([
                 'status' => false,
                 'message' => 'codigo nao encontrado'
             ]);
         }
 
-    $sensor->update(['status'=> $request->status]);
+        $sensor->update(['status' => $request->status]);
 
-    return response()->json([
-        'message' => 'status atualizado com sucesso',
-        'status' => true
-    ]);
-
+        return response()->json([
+            'message' => 'status atualizado com sucesso',
+            'status' => true
+        ]);
     }
 }
