@@ -15,6 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+        User::factory()->create([
+            'name' => 'Test',
+            'email' => 'test@example.com',
+            'password' => '123456'
+        ]);
+
        $this->call([
         AmbienteSeeder::class,
         SensorSeeder::class,

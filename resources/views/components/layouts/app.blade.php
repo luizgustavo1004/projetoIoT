@@ -28,7 +28,7 @@
             <div class="nav-section-title">Menu Principal</div>
 
             <nav class="nav flex-column px-2">
-                <a href="/" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                <a href="Dashboard" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
                 <a href="/Ambiente" class="nav-link"><i class="bi bi-building"></i> Ambientes</a>
                 <a href="/Sensor" class="nav-link"><i class="bi bi-binoculars"></i> Sensores</a>
                 <a href="/Registro" class="nav-link"><i class="bi bi-database-add"></i> Registros</a>
